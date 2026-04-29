@@ -281,7 +281,7 @@ const Promotion = () => {
   );
 };
 
-const ReviewCard = ({ name, content, initials, delay }: { name: string, content: string, initials: string, delay: number }) => (
+const ReviewCard = ({ name, content, initials, delay }: { name: string, content: string, initials: string, delay: number, key?: any }) => (
   <motion.div 
     initial={{ opacity: 0, x: 20 }}
     whileInView={{ opacity: 1, x: 0 }}
@@ -339,6 +339,27 @@ const BeforeAfterGallery = () => {
 
 
 const HomePage = () => {
+  const [reviewIndex, setReviewIndex] = useState(0);
+  const reviews = [
+    { name: "김 * * 고객님", initials: "KJ", content: "시설이 너무 고급스럽고 원장님이 정말 꼼꼼하세요. 시술 후에 피부결이 눈에 띄게 좋아져서 대만족입니다." },
+    { name: "이 * * 고객님", initials: "LH", content: "상담부터 시술까지 프라이빗한 느낌이 좋았어요. 과잉 진료 없이 저에게 꼭 필요한 케어만 추천해주셔서 신뢰가 갑니다." },
+    { name: "박 * * 고객님", initials: "PY", content: "리프팅 받고 주변에서 얼굴 작아졌다는 소리 많이 들어요. 자연스럽게 예뻐지는 걸 원했는데 딱 제가 바라던 결과예요." },
+    { name: "최 * * 고객님", initials: "CS", content: "색소 치료 고민하다 방문했는데 정말 꼼꼼하게 봐주시네요. 잡티가 눈에 띄게 연해져서 화장하는 시간이 줄었어요." },
+    { name: "정 * * 고객님", initials: "JW", content: "다른 곳보다 더 전문적인 느낌이었어요. 제 피부 타입에 맞는 솔루션을 제시해주셔서 마음 편히 관리받고 있습니다." },
+    { name: "윤 * * 고객님", initials: "YA", content: "관리실 분위기가 카페처럼 편안해서 올 때마다 힐링하고 가요. 직원분들도 친절하시고 실력도 최고입니다." },
+    { name: "송 * * 고객님", initials: "SY", content: "주기적으로 리프팅 관리받고 있는데 정말 만족합니다. 탄력이 확실히 살아난 게 느껴져요. 평생 단골 예정입니다." },
+    { name: "강 * * 고객님", initials: "KH", content: "피부 트러블 때문에 방문했는데 원인이 무엇인지 명확하게 짚어주셔서 좋았어요. 처방해주신 대로 하니 금방 진정되네요." },
+    { name: "조 * * 고객님", initials: "JH", content: "프라이빗한 1:1 케어라 너무 안심되고 좋아요. 저만을 위한 특별한 관리를 받는 기분이라 매번 기분 좋게 방문합니다." },
+  ];
+
+  const handleNextReview = () => {
+    setReviewIndex((prev) => (prev + 3 >= reviews.length ? 0 : prev + 3));
+  };
+
+  const handlePrevReview = () => {
+    setReviewIndex((prev) => (prev - 3 < 0 ? Math.max(0, reviews.length - 3) : prev - 3));
+  };
+
   return (
     <main>
       <Hero />
@@ -388,34 +409,42 @@ const HomePage = () => {
               <span className="font-sans text-[10px] font-bold text-[#2A1701] mb-4 block tracking-[0.3em] uppercase">Testimonials</span>
               <h2 className="font-serif text-3xl md:text-4xl text-[#2A1701] font-light">고객 리얼 후기</h2>
             </div>
-            <div className="hidden md:flex space-x-4 mb-2">
-              <button className="w-12 h-12 rounded-full border border-stone-200 flex items-center justify-center hover:bg-white transition-colors">
+            <div className="flex space-x-4 mb-2">
+              <button 
+                onClick={handlePrevReview}
+                className="w-12 h-12 rounded-full border border-stone-200 flex items-center justify-center hover:bg-white transition-colors active:scale-95"
+              >
                 <ChevronLeft size={20} className="text-stone-400" />
               </button>
-              <button className="w-12 h-12 rounded-full border border-stone-200 flex items-center justify-center hover:bg-white transition-colors">
+              <button 
+                onClick={handleNextReview}
+                className="w-12 h-12 rounded-full border border-stone-200 flex items-center justify-center hover:bg-white transition-colors active:scale-95"
+              >
                 <ChevronRight size={20} className="text-stone-400" />
               </button>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ReviewCard 
-              name="김 * * 고객님" 
-              content="시설이 너무 고급스럽고 원장님이 정말 꼼꼼하세요. 시술 후에 피부결이 눈에 띄게 좋아져서 대만족입니다." 
-              initials="KJ"
-              delay={0.1}
-            />
-            <ReviewCard 
-              name="이 * * 고객님" 
-              content="상담부터 시술까지 프라이빗한 느낌이 좋았어요. 과잉 진료 없이 저에게 꼭 필요한 케어만 추천해주셔서 신뢰가 갑니다." 
-              initials="LH"
-              delay={0.3}
-            />
-            <ReviewCard 
-              name="박 * * 고객님" 
-              content="리프팅 받고 주변에서 얼굴 작아졌다는 소리 많이 들어요. 자연스럽게 예뻐지는 걸 원했는데 딱 제가 바라던 결과예요." 
-              initials="PY"
-              delay={0.5}
-            />
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={reviewIndex}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.4 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              >
+                {reviews.slice(reviewIndex, reviewIndex + 3).map((review, idx) => (
+                  <ReviewCard 
+                    key={idx}
+                    name={review.name}
+                    content={review.content}
+                    initials={review.initials}
+                    delay={idx * 0.1}
+                  />
+                ))}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </section>
