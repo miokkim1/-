@@ -54,8 +54,8 @@ const Navbar = () => {
       }`}
     >
       <Link to="/" className="flex flex-col">
-        <div className="text-xl md:text-2xl font-serif font-light tracking-tighter text-[#2A1701]">라에르 피부과</div>
-        <div className="text-[9px] md:text-[10px] font-serif tracking-[0.3em] text-[#2A1701] -mt-1 uppercase">LAER DERMATOLOGY</div>
+        <div className="text-[18px] font-serif font-bold tracking-tighter text-[#2A1701]">라에르 피부과</div>
+        <div className="text-[15px] font-serif tracking-[0.3em] text-[#2A1701] -mt-1 uppercase">LAER DERMATOLOGY</div>
       </Link>
       
       <nav className="hidden lg:flex space-x-10">
@@ -63,7 +63,7 @@ const Navbar = () => {
           <Link 
             key={item.name} 
             to={item.path} 
-            className={`font-serif tracking-wide text-sm uppercase transition-colors ${
+            className={`font-serif tracking-wide text-[15px] uppercase transition-colors ${
               (location.pathname + location.hash) === item.path || (location.pathname === "/" && item.path === "/#home" && !location.hash) ? "text-[#2A1701] font-bold border-b-2 border-[#2A1701]" : "text-[#2A1701] hover:opacity-70"
             }`}
           >
@@ -73,10 +73,10 @@ const Navbar = () => {
       </nav>
 
       <div className="flex items-center space-x-4 md:space-x-8">
-        <Link to="/location" className="hidden sm:block font-serif tracking-wide text-xs md:text-sm uppercase text-[#2A1701] hover:opacity-70 transition-all">
+        <Link to="/location" className="hidden sm:block font-serif tracking-wide text-[15px] uppercase text-[#2A1701] hover:opacity-70 transition-all">
           오시는 길
         </Link>
-        <Link to="/booking" className="font-serif tracking-wide text-xs md:text-sm uppercase text-[#2A1701] px-4 md:px-6 py-2 border border-[#2A1701] hover:bg-[#2A1701]/5 transition-all">
+        <Link to="/booking" className="font-serif tracking-wide text-[15px] uppercase text-[#2A1701] px-4 md:px-6 py-2 border border-[#2A1701] hover:bg-[#2A1701]/5 transition-all">
           예약하기
         </Link>
       </div>
