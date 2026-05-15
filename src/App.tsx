@@ -93,7 +93,7 @@ const Hero = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 1.5 }}
           className="w-full h-full object-cover" 
-          src="https://postfiles.pstatic.net/MjAyNjA0MjlfMTkx/MDAxNzc3NDM4MzI4OTM2.sG9psONwOXvOjvvWW-G8gzKJwQ_Qyb4myVJTbdUkenUg.eJftLcFm4MIob4831eUUiK9ODwRbB2eIwVO_9sm_qxcg.PNG/95ed1814-6cee-4873-8b5f-6bbdcc6649cb.png?type=w773" 
+          src="https://postfiles.pstatic.net/MjAyNjA0MjlfMjk1/MDAxNzc3NDQwMTE5MzM3.cgrXuFjshLitTjGBl07_uFacGVVe1A-xc1-vokkqQSEg.PI_PD5AbvPbuR0ex91gfBR5JJFlkXpwt7zjhwwq61dEg.PNG/upscaled_2x_v2.png?type=w773" 
           alt="Laer Dermatology Hero"
           referrerPolicy="no-referrer"
         />
